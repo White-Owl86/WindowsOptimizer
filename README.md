@@ -1,16 +1,59 @@
 # Windows Optimizer 5
 
-نسخهٔ اصلاح‌شدهٔ برنامهٔ C# ارسال‌شده، با رابط فارسی برای ویندوز ۱۰ و ۱۱ نسخهٔ **x64**. این برنامه مستقل از ابزار Python در ریشهٔ مخزن است.
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%2F%2011%20x64-blue.svg)](https://microsoft.com/windows)
+[![Framework](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com)
+[![Language](https://img.shields.io/badge/Language-C%23-brightgreen.svg)](https://learn.microsoft.com/dotnet/csharp/)
 
-## دانلود و اجرا
+[English](#english) | [فارسی](#فارسی)
 
-فایل **`SystemOptimizer.exe`** در همین پوشه، خروجی مستقل ویندوز است و به نصب جداگانهٔ .NET نیاز ندارد. فایل را دانلود و اجرا کنید؛ ویندوز درخواست دسترسی Administrator نشان می‌دهد. برنامه امضای دیجیتال ندارد.
+---
+
+## English
+
+A modern, refactored C# (.NET 10) Windows 10 and 11 (x64) optimization and tuning application designed for safety, transparency, and DPI-aware modern user experience.
+
+### Download & Running
+
+#### 1. Pre-built Executable
+Download the packaged release from the [Releases](https://github.com/White-Owl86/WindowsOptimizer/releases) section:
+- Extract `SystemOptimizer-win.zip` and run `SystemOptimizer.exe`.
+- Requires Administrator privileges (UAC prompt will appear).
+- No manual option is selected by default; review warnings before proceeding with optimizations.
+
+#### 2. Running from Source
+Requires **.NET SDK 10.0.401** (configured in `global.json`):
+```powershell
+# Run regression tests
+dotnet run --project tests/SystemOptimizer.Tests -c Release
+
+# Build Windows Forms application
+dotnet build src/SystemOptimizer.Windows -c Release
+```
+
+### Key Safety Improvements & Architecture
+
+- **Safe Process Execution:** Replaces arbitrary `cmd /c` shell calls with direct process argument parsing, execution timeouts, and comprehensive stderr/exit code capture.
+- **Accurate State Tracking:** Tracks every operation status (Success, Failed, Skipped). Verifies system state (services, power plans, scheduled tasks, Pagefile) after changes.
+- **Firefox Policy Safety:** Safely merges browser policies with existing preferences without destroying custom settings. Backs up original policy files (`.bak`).
+- **Careful Temp Cleanup:** Restricts file removal to temp files older than 7 days. Strictly avoids symbolic links, junctions, active runtime paths, and Windows Update cache.
+- **Browser & Power Tuning:** Supports Edge Sleeping Tabs and Chromium High Efficiency mode policies, alongside verifiable High Performance power plans.
+- **Audit Logging:** Detailed step logs and operational history are automatically written to `%LOCALAPPDATA%\WindowsOptimizer\Logs`.
+
+---
+
+## فارسی
+
+نسخهٔ اصلاح‌شدهٔ برنامهٔ C# ارسال‌شده، با رابط فارسی برای ویندوز ۱۰ و ۱۱ نسخهٔ **x64**.
+
+### دانلود و اجرا
+
+فایل اجرایی برنامه از بخش [Releases](https://github.com/White-Owl86/WindowsOptimizer/releases) قابل دانلود است. فایل را دانلود و اجرا کنید؛ ویندوز درخواست دسترسی Administrator نشان می‌دهد. برنامه امضای دیجیتال ندارد.
 
 هیچ گزینه‌ای در شروع انتخاب نشده است. گزینه‌ها را انتخاب کنید، توضیحات هشدار را بخوانید و در صورت تمایل تأیید کنید. پیش‌فرض تأیید **خیر** است. هنگام اجرای عملیات، تغییر گزینه‌ها و بستن پنجره مسدود می‌شود تا نتیجه ثبت شود.
 
 تنظیمات CurrentUser و محل گزارش مربوط به **حسابی است که برنامه با آن اجرا می‌شود**؛ نام آن در پنجره نمایش داده می‌شود. اگر برای UAC حساب دیگری وارد کنید، تنظیمات کاربری روی همان حساب مدیر اعمال می‌شوند.
 
-## ایرادهای اصلاح‌شده
+### ایرادهای اصلاح‌شده
 
 - فرمان‌ها دیگر از طریق `cmd /c` اجرا نمی‌شوند؛ آرگومان‌ها جدا ارسال شده و کد خروج، خروجی خطا و مهلت اجرا بررسی می‌شوند. فرمانِ زمان‌تمام‌شده خاتمه داده می‌شود و احتمال تغییر جزئی گزارش می‌شود.
 - نتیجهٔ هر گزینه به‌صورت موفق، ناموفق یا انجام‌نشده ثبت می‌شود. موفقیت کلی بدون توجه به خطاها اعلام نمی‌شود. سرویس‌ها، طرح برق، تسک‌ها و Pagefile پس از تغییر بررسی می‌شوند.
@@ -23,7 +66,7 @@
 - سیاست Sleeping Tabs در Edge افزوده شده و سیاست Widgets ویندوز ۱۱ از مسیر مستند آن ثبت می‌شود. ثبت مقدار رجیستری به معنی تأیید اثر آن در همهٔ ویرایش‌های ویندوز نیست؛ مرورگرها را در `edge://policy` و `chrome://policy` بررسی کنید.
 - رابط قابل تغییر اندازه و سازگار با DPI است؛ خروجی مراحل در فایل گزارش نیز ذخیره می‌شود.
 
-## اثر تغییرات و بازیابی
+### اثر تغییرات و بازیابی
 
 خاموش‌کردن Windows Search می‌تواند جست‌وجو را کندتر کند؛ خاموش‌کردن Update دریافت خودکار به‌روزرسانی‌های امنیتی را مختل می‌کند. ویندوز یا سیاست سازمان ممکن است وضعیت سرویس‌ها را دوباره تغییر دهد. افزایش سرعت یا کاهش مصرف رم برای همهٔ دستگاه‌ها تضمین نمی‌شود.
 
@@ -31,24 +74,18 @@
 
 گزارش‌ها در `%LOCALAPPDATA%\WindowsOptimizer\Logs` ذخیره می‌شوند. قابلیت‌های این برنامه شامل غیرفعال‌کردن Defender یا فایروال نیست.
 
-## ساخت از سورس
+### ساخت از سورس
 
 SDK تعیین‌شده در `global.json`، یعنی **.NET SDK 10.0.401** را نصب کنید. از داخل این پوشه:
 
 ```powershell
 dotnet run --project tests/SystemOptimizer.Tests -c Release
-dotnet publish src/SystemOptimizer.Windows -c Release -r win-x64 --self-contained true -o artifacts/win-x64
+dotnet build src/SystemOptimizer.Windows -c Release
 ```
 
-این دو فرمان را پشت سر هم اجرا کنید؛ اجرای هم‌زمان آن‌ها می‌تواند روی خروجی مشترک کتابخانهٔ Core تداخل ایجاد کند. خروجی قابل اجرا `artifacts/win-x64/SystemOptimizer.exe` است. پروژه به بستهٔ جانبی NuGet وابسته نیست؛ SDK هنگام restore بسته‌های رسمی هدف‌گذاری و runtime ویندوز را دریافت می‌کند. `EnableWindowsTargeting` ساخت فایل ویندوز را از لینوکس هم ممکن می‌کند.
+پروژه به بستهٔ جانبی NuGet وابسته نیست.
 
-## آزمون و محدودیت تأیید
-
-پروژهٔ `tests/SystemOptimizer.Tests` یک اجراکنندهٔ تست بدون بستهٔ جانبی است؛ در صورت شکست، کد خروج غیرصفر دارد. آزمون‌ها مدیریت واقعی پردازهٔ آزمایشی، timeout، خروجی هم‌زمان، آرگومان‌ها، ادغام سیاست Firefox، حفظ فایل‌ها و شمارش نتیجهٔ عملیات را بررسی می‌کنند. این آزمون‌ها هیچ تنظیم ویندوز یا مرورگر واقعی را تغییر نمی‌دهند.
-
-خروجی انتشار در محیط لینوکس برای `win-x64` ساخته شده است. **اجرای رابط WinForms، درخواست UAC و اعمال واقعی فرمان‌ها روی ویندوز در این محیط آزمایش نشده‌اند.** پیش از استفاده روی دستگاه کاری، آن‌ها را روی یک ماشین آزمایشی ویندوز بررسی کنید. اطلاعات نسخهٔ SDK، hash سورس و SHA-256 فایل اجرایی در `build-info.json` و `SHA256SUMS.txt` همراه خروجی ثبت شده‌اند.
-
-## منابع
+### منابع
 
 - [انتشار single-file و runtime مستقل — Microsoft](https://learn.microsoft.com/en-us/dotnet/core/deploying/single-file/overview)
 - [سیاست Preferences در Firefox — Mozilla](https://mozilla.github.io/policy-templates/#preferences)
