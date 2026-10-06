@@ -1,0 +1,38 @@
+{
+  "application": "Windows Optimizer",
+  "version": "5.0.0",
+  "source_commit": "cfb54e47a1dd787c84a61ec0e2f5a44907438406",
+  "source_sha256": {
+    ".gitignore": "93b29f8b9a1d76ff55de359aedd492abc6a144c30dbdc09959f4aa8deeb6ad3a",
+    "README.md": "5c94aa82d973eaddc9e9d80423004ad3af701576f87f659a6f0c8da1214d5c4e",
+    "global.json": "f8895c3e857eaa25f38be5e57a7581cc624727b527c94f2701fa1ba57e64f100",
+    "src/SystemOptimizer.Core/CommandRunner.cs": "26990782639a350ea30bde216cb0c6261c7884fa728b07e2d7740768d7aa6f6d",
+    "src/SystemOptimizer.Core/FileSafety.cs": "c14db9d5b5bd9f608761e9a1153ceed003ee499283315b0367022f6a67f4788f",
+    "src/SystemOptimizer.Core/FirefoxPolicy.cs": "71f9d7d34b15b6e284ffaebc92b21ff82f2dcf0090db25c65f6dd496ce40b1b8",
+    "src/SystemOptimizer.Core/OperationRunner.cs": "505decfaa1309d34960058c10adca25018f8c32240e3f524f9b7b394c16fbf15",
+    "src/SystemOptimizer.Core/SystemOptimizer.Core.csproj": "9b8458580be4e786dd73ed606f80627ab81a4545fbe8834e205dc430a56e7544",
+    "src/SystemOptimizer.Windows/Program.cs": "e18fb60560660bc0ffd531ff8f778201f977bc688c2d6fddbdf38fb66ae4d811",
+    "src/SystemOptimizer.Windows/SystemOptimizer.Windows.csproj": "62306bbeddc344e372c7d1cd9fcf3b54a14633748d7fc7d909001a512bf32e34",
+    "src/SystemOptimizer.Windows/WindowsOperations.cs": "103053039e43a9e05ac25759e9dd5647f366ebc800d4f7b7ff55ea4b3c66eee3",
+    "src/SystemOptimizer.Windows/app.manifest": "8a8b6f0be23eb2d57a8f6de30939d597b3d4876bcade54477585427fb07044f5",
+    "tests/SystemOptimizer.Tests/Program.cs": "8af0ae95642d5907e4f185860daae6d8de67b9fe3f39c79eab0ba42ea1957cd3",
+    "tests/SystemOptimizer.Tests/SystemOptimizer.Tests.csproj": "89840222cdfee2f3944736e1109fea47e3e0c9f5303c5c998df5a0a0de2e8457"
+  },
+  "exe_sha256": "14f3a42869a142750045b4368a1668dd0f367af93afdf663e6179279674c8c5a",
+  "exe_bytes": 51660064,
+  "sdk": "10.0.401",
+  "runtime": "10.0.12",
+  "build_platform": "Amazon Linux 2023 (linux-x64)",
+  "target_runtime": "win-x64",
+  "self_contained": true,
+  "single_file": true,
+  "build_command": "dotnet publish src/SystemOptimizer.Windows -c Release -r win-x64 --self-contained true -o artifacts/win-x64",
+  "validation": {
+    "regression_tests_passed": 21,
+    "test_platform": "linux-x64",
+    "pe_headers": "x86-64 Windows GUI",
+    "manifest": "requireAdministrator",
+    "native_windows_gui_and_commands": "not run; Windows host unavailable"
+  },
+  "code_signed": false
+}
